@@ -1,0 +1,37 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><variables><variable id="pd$j,#nt[qaHf/mLr-?S">Mailbox</variable><variable id=":rv5G$8lgpgLSB*k[V*5">recievedvalue</variable></variables><block type="device_forever" id="s/#LBh_2;0*1GYsz29]Z" x="329" y="-42"><statement name="HANDLER"><block type="device_show_number" id=")f{3rQvma:s7BoUo%~n["><value name="number"><shadow type="math_number"><field name="NUM">0</field></shadow><block type="device_get_analog_pin" id="u}=rN4D}Mq_B}^,pw`W]"><field name="name">AnalogPin.P1</field></block></value><next><block type="controls_if" id="zxYSy2a(CBd#QjRTU+=+"><mutation else="1"/><comment>If the mailbox is opened</comment><value name="IF0"><shadow type="logic_boolean" disabled="true"><field name="BOOL">TRUE</field></shadow><block type="logic_compare" id="XMCZIQkw!:Tk4f`zL=Ry"><field name="OP">GT</field><value name="A"><shadow type="math_number"><field name="NUM">0</field></shadow><block type="device_get_analog_pin" id="3~r+B17Mkd?xyaJ#^h`V"><field name="name">AnalogPin.P1</field></block></value><value name="B"><shadow type="math_number" id="#-^1Hw1z9MEXDCm$SVL_"><field name="NUM">950</field></shadow></value></block></value><statement name="DO0"><block type="radio_set_group" id="Rnztb:[o)pi[b{@$LHtA"><comment>change the radio group</comment><value name="ID"><shadow type="math_number_minmax" id="[a-v25)TM%=!rd*`ykN4"><mutation min="0" max="255" label="Id" precision="0"/><field name="SLIDER">245</field></shadow></value><next><block type="radio_datagram_send_string" id="sdyclIjMc7o:qn]fe8{^"><comment>send a message </comment><value name="msg"><shadow type="text" id="IiI1vWI/EVXF4Lsr%ak)"><field name="TEXT">opened mailbox</field></shadow></value><next><block type="device_start_melody" id="uM:o?bukFq,/-)Mxfb{@"><field name="options">MelodyOptions.Forever</field><comment>Play an alarm</comment><value name="melody"><block type="device_builtin_melody" id="d*{n,)#ot*S^+qgOnnOE"><field name="melody">Melodies.Wawawawaa</field></block></value><next><block type="device_show_leds" id="v`]k#hKd9Da;_C|tgzUf"><field name="LEDS">`
+        . . . . . 
+        . # # # . 
+        . # # # . 
+        . # # # . 
+        . . . . .
+        `</field><comment>Flashing Lights</comment><next><block type="device_show_leds" id="lN/U#3~=lF:p1L~(cKf{"><field name="LEDS">`
+        . . . . . 
+        . # # # . 
+        . # . # . 
+        . # # # . 
+        . . . . .
+        `</field><next><block type="device_show_leds" id="*DI$PTEXt$`M=gohn7kf"><field name="LEDS">`
+        # # # # # 
+        # . . . # 
+        # . . . # 
+        # . . . # 
+        # # # # #
+        `</field><next><block type="device_show_leds" id="vHfPRo*hjdlTwYSCZbap"><field name="LEDS">`
+        . . . . . 
+        . . . . . 
+        . . . . . 
+        . . . . . 
+        . . . . .
+        `</field></block></next></block></next></block></next></block></next></block></next></block></next></block></statement><statement name="ELSE"><block type="radio_datagram_send_string" id="0E(l+bL*^AMi_3)a)oH3"><comment>Send a message there is no problem</comment><value name="msg"><shadow type="text" id="9PK#_O4Jl{{wD=H-o*hh"><field name="TEXT">not opened</field></shadow></value><next><block type="music_stop_all_sounds" id=")fPnEZ/6i(3}=_d}1N%z"><comment>Any alarm going on gets stopped</comment><next><block type="device_clear_display" id="a*wvpE@]C~xjd?9i9#F0"><comment>Clear any flashing lights left</comment><next><block type="device_show_leds" id="wJ^#LR!hy%O@;=ez;Kgt"><field name="LEDS">`
+        . . . . . 
+        . # # # . 
+        . # # # . 
+        . . # . . 
+        . . # . .
+        `</field><comment>Show the mailbox</comment></block></next></block></next></block></next></block></statement></block></next></block></statement></block><block type="pxt-on-start" id="Y5EGPLR_oJx9IvavZ)Jx" x="0" y="0"><statement name="HANDLER"><block type="radio_set_group" id=",3y63zJmfbIu.jb3C!xQ"><value name="ID"><shadow type="math_number_minmax" id="P{PFn.)/Hsit1q?AOy#}"><mutation min="0" max="255" label="Id" precision="0"/><field name="SLIDER">255</field></shadow></value></block></statement></block><block type="radio_on_number_drag" id="9Ok3lcUz0[10Ro@jE;^1" x="920" y="499"><value name="HANDLER_DRAG_PARAM_receivedNumber"><shadow type="argument_reporter_number" id="!E3]e5k0125z!pTfC;S7"><field name="VALUE">receivedNumber</field></shadow></value><statement name="HANDLER"><block type="device_show_number" id="E1X,QyiL;h7*DWwv_Z_V"><comment>Show the number sent</comment><value name="number"><shadow type="math_number"><field name="NUM">0</field></shadow><block type="argument_reporter_number" id="_j$s27Zd8da*[*8T5:j?"><field name="VALUE">receivedNumber</field></block></value><next><block type="variables_set" id="?;NEO=Kk5^1B8HZjroOg"><field name="VAR" id=":rv5G$8lgpgLSB*k[V*5">recievedvalue</field><comment>The recieved value is the same as the recieved number</comment><value name="VALUE"><shadow type="math_number"><field name="NUM">0</field></shadow><block type="argument_reporter_number" id="|^tu~9pmHd.XLz-(}QL{"><field name="VALUE">receivedNumber</field></block></value><next><block type="controls_if" id="g.t%C13v`dI4/vJvE--)"><comment>If the recieved value is 245 then start</comment><value name="IF0"><shadow type="logic_boolean"><field name="BOOL">TRUE</field></shadow><block type="logic_compare" id="AU]B1SV8JS4`/dK^:Tvq"><field name="OP">EQ</field><value name="A"><shadow type="math_number"><field name="NUM">0</field></shadow><block type="argument_reporter_number" id="/%rs).eQI4xT.GB+:Uvq"><field name="VALUE">receivedNumber</field></block></value><value name="B"><shadow type="math_number" id="a2QE[Jf5}=2]iuOA_YGp"><field name="NUM">245</field></shadow></value></block></value><statement name="DO0"><block type="music_stop_all_sounds" id="G$n1(i$bd/^g}D@_gDGU"><comment>stop any alarm going off</comment><next><block type="device_clear_display" id="ToVS77MY}i_SM#Pu]Fuv"><comment>clear the flashing lights</comment><next><block type="device_show_leds" id="-~Y|Cphsf-yxR[EkI54+"><field name="LEDS">`
+        . . . . . 
+        . # # # . 
+        . # # # . 
+        . . # . . 
+        . . # . .
+        `</field><comment>Show the mailbox</comment></block></next></block></next></block></statement></block></next></block></next></block></statement></block></xml>
